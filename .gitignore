@@ -398,3 +398,5 @@ FodyWeavers.xsd
 *.sln.iml
 CRUD_MVC/appsettings.json
 CRUD_MVC/appsettings.Development.json
+CRUD_Razor/appsettings.json
+CRUD_Razor/appsettings.Development.json
