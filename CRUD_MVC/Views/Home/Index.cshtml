@@ -2,7 +2,35 @@
     ViewData["Title"] = "Home Page";
 }
 
+@model List<Student>
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Students</h1>
+</div>
+<div class="row">
+    <div class="text-end">
+        <a asp-controller="Home" asp-action="Create" class="btn btn-primary">Add Student</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col text-center">All Students</div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>GPA</td>
+
+            </tr>
+        </thead>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.FName @s.LName</td>
+                <td>@s.Gpa</td>
+                <td class="col-2"> <a asp-action="Edit" asp-route-id="@s.Id" class="col-12 btn btn-info">Edit</a> </td>
+                <td class="col-2"><a asp-action="Delete" asp-route-id="@s.Id" class="col-12 btn btn-danger">Remove</a> </td>
+            </tr>
+        }
+    </table>
 </div>
