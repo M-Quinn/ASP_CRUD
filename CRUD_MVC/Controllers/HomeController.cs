@@ -18,7 +18,8 @@ namespace CRUD_MVC.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var studentData = _dbContext.StudentsMVC.ToList();
+            return View(studentData);
         }
 
         public IActionResult Privacy()
