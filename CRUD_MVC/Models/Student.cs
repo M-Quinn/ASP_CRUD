@@ -1,4 +1,7 @@
-﻿namespace CRUD_MVC.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
+
+namespace CRUD_MVC.Models
 {
     public class Student
     {
