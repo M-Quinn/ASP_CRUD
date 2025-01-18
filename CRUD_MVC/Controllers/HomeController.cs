@@ -92,6 +92,26 @@ namespace CRUD_MVC.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+                return NotFound();
+            Student studentFromDb = _dbContext.StudentsMVC.FirstOrDefault(x => x.Id == id);
+
+            return View(studentFromDb);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Student student)
+        {
+            _dbContext.Remove(student);
+            _dbContext.SaveChanges();
+
+            TempData[TEMP_SUCCESS] = "Student record was deleted.";
+
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Privacy()
         {
             return View();
