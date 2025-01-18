@@ -33,6 +33,10 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @if (TempData["success"] != null)
+            {
+                <h3 class="text-primary">@TempData["success"]</h3>
+            }
             @RenderBody()
         </main>
     </div>
