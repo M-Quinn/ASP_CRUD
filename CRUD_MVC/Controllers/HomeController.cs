@@ -56,6 +56,42 @@ namespace CRUD_MVC.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+                return NotFound();
+            Student studentFromDb = _dbContext.StudentsMVC.FirstOrDefault(x => x.Id == id);
+
+            return View(studentFromDb);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Student student)
+        {
+            if (string.IsNullOrEmpty(student.FName))
+            {
+                ModelState.AddModelError("FName", "Students need to have a first name");
+                return View();
+            }
+            if (string.IsNullOrEmpty(student.LName))
+            {
+                ModelState.AddModelError("LName", "Students need to have a first name");
+                return View();
+            }
+            if (student.Gpa > 4.0f || student.Gpa <= 0.0f)
+            {
+                ModelState.AddModelError("Gpa", "GPA must be between 0.1 and 4.0");
+                return View();
+            }
+
+            _dbContext.StudentsMVC.Update(student);
+            _dbContext.SaveChanges();
+
+            TempData[TEMP_SUCCESS] = "Student record was successfully edited.";
+
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Privacy()
         {
             return View();
