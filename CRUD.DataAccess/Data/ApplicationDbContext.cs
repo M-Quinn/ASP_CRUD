@@ -1,7 +1,7 @@
-﻿using CRUD_MVC.Models;
+﻿using CRUD.Model.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace CRUD_MVC.Data
+namespace CRUD.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {

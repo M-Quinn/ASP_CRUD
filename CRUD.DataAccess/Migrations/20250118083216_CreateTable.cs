@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace CRUD_MVC.Migrations
+namespace CRUD.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class CreateTable : Migration
