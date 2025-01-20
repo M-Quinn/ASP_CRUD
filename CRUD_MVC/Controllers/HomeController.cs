@@ -1,6 +1,6 @@
 using System.Diagnostics;
-using CRUD_MVC.Data;
-using CRUD_MVC.Models;
+using CRUD.DataAccess.Data;
+using CRUD.Model.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CRUD_MVC.Controllers

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace CRUD_MVC.Models
+namespace CRUD.Model.Models
 {
     public class Student
     {

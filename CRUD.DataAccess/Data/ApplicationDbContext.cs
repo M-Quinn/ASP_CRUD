@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CRUD.Model.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRUD.DataAccess.Data
 {
