@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using CRUD_MVC.Repository.IRepository;
 using CRUD.DataAccess.Data;
 using CRUD.Model.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -8,20 +9,19 @@ namespace CRUD_MVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ApplicationDbContext _dbContext;
+        private readonly IStudent _studentRepository;
 
         private const string TEMP_SUCCESS = "success";
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext)
+        public HomeController(ILogger<HomeController> logger, IStudent studentRepository)
         {
             _logger = logger;
-            _dbContext = dbContext;
+            _studentRepository = studentRepository;
         }
 
         public IActionResult Index()
         {
-            var studentData = _dbContext.StudentsMVC.ToList();
-            return View(studentData);
+            return View(_studentRepository.GetAll().ToList());
         }
 
         public IActionResult Create()
@@ -48,8 +48,8 @@ namespace CRUD_MVC.Controllers
                 return View();
             }
 
-            _dbContext.Add(student);
-            _dbContext.SaveChanges();
+            _studentRepository.Add(student);
+            _studentRepository.Save();
 
             TempData[TEMP_SUCCESS] = "Student was successfully added.";
 
@@ -60,7 +60,7 @@ namespace CRUD_MVC.Controllers
         {
             if (id == null || id == 0)
                 return NotFound();
-            Student studentFromDb = _dbContext.StudentsMVC.FirstOrDefault(x => x.Id == id);
+            Student studentFromDb = _studentRepository.Get(x => x.Id == id);
 
             return View(studentFromDb);
         }
@@ -84,8 +84,8 @@ namespace CRUD_MVC.Controllers
                 return View();
             }
 
-            _dbContext.StudentsMVC.Update(student);
-            _dbContext.SaveChanges();
+            _studentRepository.Update(student);
+            _studentRepository.Save();
 
             TempData[TEMP_SUCCESS] = "Student record was successfully edited.";
 
@@ -96,7 +96,7 @@ namespace CRUD_MVC.Controllers
         {
             if (id == null || id == 0)
                 return NotFound();
-            Student studentFromDb = _dbContext.StudentsMVC.FirstOrDefault(x => x.Id == id);
+            Student studentFromDb = _studentRepository.Get(x => x.Id == id);// _dbContext.StudentsMVC.FirstOrDefault(x => x.Id == id);
 
             return View(studentFromDb);
         }
@@ -104,8 +104,8 @@ namespace CRUD_MVC.Controllers
         [HttpPost]
         public IActionResult Delete(Student student)
         {
-            _dbContext.Remove(student);
-            _dbContext.SaveChanges();
+            _studentRepository.Remove(student);
+            _studentRepository.Save();
 
             TempData[TEMP_SUCCESS] = "Student record was deleted.";
 
