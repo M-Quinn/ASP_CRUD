@@ -1,3 +1,5 @@
+using CRUD_MVC.Repository;
+using CRUD_MVC.Repository.IRepository;
 using CRUD.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +10,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ApplicationDbContext>(o =>
     o.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
+builder.Services.AddScoped<IStudent, StudentRepository>();
 
 var app = builder.Build();
 
