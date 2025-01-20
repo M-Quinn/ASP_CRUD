@@ -1,4 +1,4 @@
-using CRUD_MVC.Data;
+using CRUD.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
