@@ -10,6 +10,8 @@
  ## Technologies Used
   - C#
   - Entity Framework Core
+  - N-Tier Architecture
+  - Repository Pattern
   - Asp.Net MVC
   - Asp.Net Razor Pages
   - .Net Core 9.0
